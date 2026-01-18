@@ -1,0 +1,9 @@
+
+{
+  "name": "Tanakh Ecosystem - Test & Reward",
+  "description": "A cross-platform ecosystem for testing, internal token economy, and exclusive Telegram channel access. Features 5 specialized tests, agent-based distribution, and Gemini-powered analysis.",
+  "requestFramePermissions": [
+    "geolocation",
+    "camera"
+  ]
+}

@@ -1,0 +1,25 @@
+
+{
+  "name": "Tanakh Ecosystem",
+  "short_name": "TANAKH",
+  "description": "Экосистема для тестирования и развития личности с AI анализом.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0f0a1f",
+  "theme_color": "#6d28d9",
+  "icons": [
+    {
+      "src": "https://img.icons8.com/fluency/144/crystal.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://img.icons8.com/fluency/512/crystal.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "orientation": "portrait"
+}
