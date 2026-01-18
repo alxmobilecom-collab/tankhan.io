@@ -1,15 +1,29 @@
 
 import React, { useState } from 'react';
-import { AppProvider, useApp } from './context/AppContext.tsx';
-import Navbar from './components/Navbar.tsx';
-import LandingPage from './components/LandingPage.tsx';
-import AdminPanel from './components/AdminPanel.tsx';
-import AgentPanel from './components/AgentPanel.tsx';
-import AuthModal from './components/AuthModal.tsx';
-import FooterMenu from './components/FooterMenu.tsx';
-import UserProfile from './components/UserProfile.tsx';
-import FoodScanner from './components/FoodScanner.tsx';
+import { AppProvider, useApp } from './context/AppContext';
+import Navbar from './components/Navbar';
+import LandingPage from './components/LandingPage';
+import AdminPanel from './components/AdminPanel';
+import AgentPanel from './components/AgentPanel';
+import AuthModal from './components/AuthModal';
+import FooterMenu from './components/FooterMenu';
+import UserProfile from './components/UserProfile';
+import FoodScanner from './components/FoodScanner';
 import { ArrowLeft, Lock, LogIn } from 'lucide-react';
+
+// Icons defined at the top to avoid ReferenceErrors
+const FoodScannerIcon = () => (
+  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12V7a2 2 0 0 1 2-2h5"/><path d="M15 5h5a2 2 0 0 1 2 2v5"/><path d="M2 17v2a2 2 0 0 0 2 2h5"/><path d="M15 21h5a2 2 0 0 0 2-2v-2"/><circle cx="12" cy="12" r="3"/><path d="m16 16 2 2"/></svg>
+);
+const WalletIcon = () => (
+  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
+);
+const AgentsIcon = () => (
+  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+);
+const ProfileIcon = () => (
+  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+);
 
 const AuthRequiredView: React.FC<{ icon: React.ReactNode, title: string, desc: string, onAuth: () => void }> = ({ icon, title, desc, onAuth }) => (
   <div className="pt-40 px-6 max-w-md mx-auto text-center space-y-6 animate-in fade-in slide-in-from-bottom-4">
@@ -142,19 +156,6 @@ const AppContent: React.FC = () => {
   );
 };
 
-const FoodScannerIcon = () => (
-  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12V7a2 2 0 0 1 2-2h5"/><path d="M15 5h5a2 2 0 0 1 2 2v5"/><path d="M2 17v2a2 2 0 0 0 2 2h5"/><path d="M15 21h5a2 2 0 0 0 2-2v-2"/><circle cx="12" cy="12" r="3"/><path d="m16 16 2 2"/></svg>
-);
-const WalletIcon = () => (
-  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
-);
-const AgentsIcon = () => (
-  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-);
-const ProfileIcon = () => (
-  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-);
-
 const App: React.FC = () => {
   return (
     <AppProvider>
@@ -164,4 +165,5 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 
