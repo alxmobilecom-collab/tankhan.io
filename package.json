@@ -7,7 +7,8 @@
     "esbuild": "^0.24.0"
   },
   "scripts": {
-    "build": "esbuild index.tsx --bundle --outfile=main.js --format=esm --jsx=automatic --minify --platform=browser --target=es2020 --define:process.env.NODE_ENV=\\\"production\\\" --define:process.env.API_KEY=\\\"\\\" --external:react --external:react/* --external:react-dom --external:react-dom/* --external:lucide-react --external:@google/genai --log-level=info"
+    "build": "esbuild index.tsx --bundle --outfile=main.js --format=esm --jsx=automatic --minify --platform=browser --target=es2020 --loader:.ts=tsx --loader:.tsx=tsx --define:process.env.NODE_ENV='\"production\"' --define:process.env.API_KEY='\"\"' --external:react --external:react-dom --external:lucide-react --external:@google/genai --log-level=info"
   }
 }
+
 
