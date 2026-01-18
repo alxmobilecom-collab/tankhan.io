@@ -22,26 +22,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
       - name: Build App
-        run: |
-          # Используем esbuild для компиляции TSX в JS.
-          # Все библиотеки из importmap помечаем как внешние (--external),
-          # чтобы esbuild не пытался найти их в node_modules.
-          npx --yes esbuild index.tsx \
-            --bundle \
-            --outfile=main.js \
-            --format=esm \
-            --jsx=automatic \
-            --minify \
-            --platform=browser \
-            --target=es2020 \
-            --define:process.env.NODE_ENV=\"production\" \
-            --define:process.env.API_KEY=\"\" \
-            --external:react \
-            --external:react-dom \
-            --external:react-dom/client \
-            --external:lucide-react \
-            --external:@google/genai
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -58,6 +49,7 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
 
 
 
