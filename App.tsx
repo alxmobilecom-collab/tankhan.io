@@ -1,14 +1,14 @@
 
 import React, { useState } from 'react';
-import { AppProvider, useApp } from './context/AppContext';
-import Navbar from './components/Navbar';
-import LandingPage from './components/LandingPage';
-import AdminPanel from './components/AdminPanel';
-import AgentPanel from './components/AgentPanel';
-import AuthModal from './components/AuthModal';
-import FooterMenu from './components/FooterMenu';
-import UserProfile from './components/UserProfile';
-import FoodScanner from './components/FoodScanner';
+import { AppProvider, useApp } from './context/AppContext.tsx';
+import Navbar from './components/Navbar.tsx';
+import LandingPage from './components/LandingPage.tsx';
+import AdminPanel from './components/AdminPanel.tsx';
+import AgentPanel from './components/AgentPanel.tsx';
+import AuthModal from './components/AuthModal.tsx';
+import FooterMenu from './components/FooterMenu.tsx';
+import UserProfile from './components/UserProfile.tsx';
+import FoodScanner from './components/FoodScanner.tsx';
 import { ArrowLeft, Lock, LogIn } from 'lucide-react';
 
 const AuthRequiredView: React.FC<{ icon: React.ReactNode, title: string, desc: string, onAuth: () => void }> = ({ icon, title, desc, onAuth }) => (
@@ -65,9 +65,7 @@ const AppContent: React.FC = () => {
     return component;
   };
 
-  // Simple view switcher based on role and tab
   const renderView = () => {
-    // Admin and Agent have dedicated dashboards, but we can override to see the portal
     if (user?.role === 'admin' && viewOverride !== 'portal') return <AdminPanel onBack={() => setViewOverride('portal')} />;
     if (user?.role === 'agent' && viewOverride !== 'portal') return <AgentPanel onBack={() => setViewOverride('portal')} />;
 
@@ -144,7 +142,6 @@ const AppContent: React.FC = () => {
   );
 };
 
-// Simple Icon Components for AuthRequiredView
 const FoodScannerIcon = () => (
   <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12V7a2 2 0 0 1 2-2h5"/><path d="M15 5h5a2 2 0 0 1 2 2v5"/><path d="M2 17v2a2 2 0 0 0 2 2h5"/><path d="M15 21h5a2 2 0 0 0 2-2v-2"/><circle cx="12" cy="12" r="3"/><path d="m16 16 2 2"/></svg>
 );
@@ -167,3 +164,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+
