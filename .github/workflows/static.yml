@@ -22,37 +22,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
       - name: Build App
         run: |
-          # Устанавливаем esbuild локально для стабильности сборки
-          npm install esbuild
-
-          # Собираем проект. 
-          # Мы явно помечаем все системные импорты как внешние (--external),
-          # так как они будут загружены браузером через importmap в index.html.
-          ./node_modules/.bin/esbuild index.tsx \
+          # Используем esbuild для компиляции TSX в JS.
+          # Все библиотеки из importmap помечаем как внешние (--external),
+          # чтобы esbuild не пытался найти их в node_modules.
+          npx --yes esbuild index.tsx \
             --bundle \
             --outfile=main.js \
             --format=esm \
             --jsx=automatic \
             --minify \
-            --loader:.tsx=tsx \
-            --loader:.ts=ts \
             --platform=browser \
+            --target=es2020 \
+            --define:process.env.NODE_ENV=\"production\" \
+            --define:process.env.API_KEY=\"\" \
             --external:react \
+            --external:react-dom \
             --external:react-dom/client \
             --external:lucide-react \
             --external:@google/genai
-
-          # Гарантируем, что index.html ссылается на собранный main.js
-          if ! grep -q "src=\"main.js\"" index.html; then
-            sed -i 's/<\/body>/<script type="module" src="main.js"><\/script><\/body>/' index.html
-          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -69,5 +58,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
 
 
