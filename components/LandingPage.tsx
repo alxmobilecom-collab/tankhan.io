@@ -1,11 +1,11 @@
 
 import React, { useState } from 'react';
-import { useApp } from '../context/AppContext.tsx';
-import { ALL_TESTS, REVIEWS, PACKAGE_PRICE } from '../constants.ts';
+import { useApp } from '../context/AppContext';
+import { ALL_TESTS, REVIEWS, PACKAGE_PRICE } from '../constants';
 import { Play, Star, ChevronRight, Zap, ShoppingBag, BrainCircuit, Sparkles } from 'lucide-react';
-import TestRunner from './TestRunner.tsx';
-import { Test } from '../types.ts';
-import { generateTestQuestions } from '../services/gemini.ts';
+import TestRunner from './TestRunner';
+import { Test } from '../types';
+import { generateTestQuestions } from '../services/gemini';
 
 interface LandingPageProps {
   onAuthRequired?: () => void;
@@ -220,4 +220,5 @@ const LandingPage: React.FC<LandingPageProps> = ({ onAuthRequired }) => {
 };
 
 export default LandingPage;
+
 
