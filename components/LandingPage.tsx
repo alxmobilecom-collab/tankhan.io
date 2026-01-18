@@ -1,11 +1,11 @@
 
 import React, { useState } from 'react';
-import { useApp } from '../context/AppContext';
-import { ALL_TESTS, REVIEWS, PACKAGE_PRICE } from '../constants';
+import { useApp } from '../context/AppContext.tsx';
+import { ALL_TESTS, REVIEWS, PACKAGE_PRICE } from '../constants.ts';
 import { Play, Star, ChevronRight, Zap, ShoppingBag, BrainCircuit, Sparkles } from 'lucide-react';
-import TestRunner from './TestRunner';
-import { Test } from '../types';
-import { generateTestQuestions } from '../services/gemini';
+import TestRunner from './TestRunner.tsx';
+import { Test } from '../types.ts';
+import { generateTestQuestions } from '../services/gemini.ts';
 
 interface LandingPageProps {
   onAuthRequired?: () => void;
@@ -34,13 +34,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ onAuthRequired }) => {
 
     try {
       setIsGenerating(true);
-      // Generate fresh questions via Gemini
       const questions = await generateTestQuestions(
         testTemplate.id, 
         testTemplate.description[locale]
       );
       
-      // Spend tokens only after successful generation
       spendTokens(testTemplate.priceTokens);
       
       const readyTest = { ...testTemplate, questions };
@@ -56,7 +54,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onAuthRequired }) => {
 
   return (
     <div className="pt-24 pb-20 px-4 md:px-8 space-y-24">
-      {/* Loading Overlay for AI Generation */}
       {isGenerating && (
         <div className="fixed inset-0 z-[100] bg-black/90 flex flex-col items-center justify-center p-6 text-center">
           <div className="relative mb-8">
@@ -79,7 +76,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onAuthRequired }) => {
         </div>
       )}
 
-      {/* Hero */}
       <section className="max-w-6xl mx-auto text-center space-y-8">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-[10px] font-bold uppercase tracking-[0.2em] mb-4">
           <div className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></div>
@@ -108,7 +104,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onAuthRequired }) => {
         </div>
       </section>
 
-      {/* Pricing / Tests */}
       <section className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div className="space-y-4">
@@ -158,7 +153,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onAuthRequired }) => {
         </div>
       </section>
 
-      {/* Reviews */}
       <section className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-manrope font-bold mb-12 text-center">
           {locale === 'RU' ? 'Отзывы сообщества' : 'Community Reviews'}
@@ -183,7 +177,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onAuthRequired }) => {
         </div>
       </section>
 
-      {/* Pay Modal */}
       {showPayModal && (
         <div className="fixed inset-0 z-[110] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="max-w-md w-full glass-card p-8 rounded-3xl space-y-6 text-center animate-in zoom-in">
@@ -227,3 +220,4 @@ const LandingPage: React.FC<LandingPageProps> = ({ onAuthRequired }) => {
 };
 
 export default LandingPage;
+
