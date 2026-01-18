@@ -22,7 +22,6 @@
             color: white;
             margin: 0;
             overflow-x: hidden;
-            /* Prevent pull-to-refresh on mobile for better app feel */
             overscroll-behavior-y: contain;
         }
         .font-manrope { font-family: 'Manrope', sans-serif; }
@@ -37,15 +36,10 @@
         .tanakh-gradient {
             background: radial-gradient(circle at top left, #2e1065, #0f172a);
         }
-        /* Custom scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #0f0a1f; }
         ::-webkit-scrollbar-thumb { background: #6d28d9; border-radius: 10px; }
-
-        /* Animation for smooth page transitions */
-        .page-enter {
-            animation: fadeIn 0.4s ease-out;
-        }
+        .page-enter { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -62,11 +56,9 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
 </head>
 <body>
     <div id="root"></div>
-    <!-- Script to ensure the app handles Telegram Mini App theme if opened there -->
     <script>
         if (window.Telegram && window.Telegram.WebApp) {
             const tg = window.Telegram.WebApp;
@@ -74,6 +66,6 @@
             tg.ready();
         }
     </script>
-<script type="module" src="/index.tsx"></script>
 </body>
 </html>
+
